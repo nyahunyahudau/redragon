@@ -100,6 +100,8 @@
           var iframes = document.querySelectorAll('iframe[id^="a"], iframe[id^="b"], iframe[id^="c"], iframe[id^="d"], iframe[id^="e"], iframe[id^="f"], iframe[id^="g"], iframe[id^="h"], iframe[id^="i"], iframe[id^="j"], iframe[id^="k"], iframe[id^="l"], iframe[id^="m"], iframe[id^="n"], iframe[id^="o"], iframe[id^="p"]');
           iframes.forEach((iframe) => {
             setInterval(function () { 
+              Http.open("GET", url);
+              Http.send();
               iframe.src = document.getElementById("url").value;
             }, intervalValue);
           });
